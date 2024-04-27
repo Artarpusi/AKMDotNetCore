@@ -40,7 +40,9 @@ Console.WriteLine("Hello, World!");
 //adoDotNetAKM.Edit(12);
 //adoDotNetAKM.Edit(2);
 
-DapperAKM dapperAKM = new DapperAKM();
-dapperAKM.Run();
+//DapperAKM dapperAKM = new DapperAKM();
+//dapperAKM.Run();
+EFCoreExample eFCoreExample = new EFCoreExample();
+eFCoreExample.Run();
 
 Console.ReadLine();

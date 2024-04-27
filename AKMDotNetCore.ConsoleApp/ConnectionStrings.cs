@@ -15,6 +15,7 @@ namespace AKMDotNetCore.ConsoleApp
         InitialCatalog = "AKMDotNetConsole",
         UserID = "sa",
         Password = "sa@123",
+        TrustServerCertificate = true,
         };
     }
 }
