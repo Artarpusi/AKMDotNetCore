@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AKMDotNetCore.ConsoleApp.Dtos;
 
-namespace AKMDotNetCore.ConsoleApp
+namespace AKMDotNetCore.ConsoleApp.EFCoreExamples
 {
     internal class EFCoreExample
     {
         private readonly AppDbContext db = new AppDbContext();
+
         public void Run()
         {
             //Read();

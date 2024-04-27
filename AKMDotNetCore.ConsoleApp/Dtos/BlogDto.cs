@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AKMDotNetCore.ConsoleApp;
+namespace AKMDotNetCore.ConsoleApp.Dtos;
 
 [Table("Tbl_Blog")]
 public class BlogDto
@@ -14,7 +14,7 @@ public class BlogDto
     [Key]
     public int BlogId { get; set; }
     public string BlogTitle { get; set; }
-    public string BlogAuthor{ get; set; }
+    public string BlogAuthor { get; set; }
     public string BlogContent { get; set; }
 }
 

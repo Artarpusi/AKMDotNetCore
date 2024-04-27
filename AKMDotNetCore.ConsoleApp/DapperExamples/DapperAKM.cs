@@ -1,4 +1,6 @@
-﻿using Dapper;
+﻿using AKMDotNetCore.ConsoleApp.Dtos;
+using AKMDotNetCore.ConsoleApp.Services;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,12 +10,12 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AKMDotNetCore.ConsoleApp
+namespace AKMDotNetCore.ConsoleApp.DapperExamples
 {
     internal class DapperAKM
     {
 
-        public void Run() 
+        public void Run()
         {
             //Read();
             //Edit(1);
@@ -23,14 +25,14 @@ namespace AKMDotNetCore.ConsoleApp
             Delete(15);
         }
 
-        public void Read() 
+        public void Read()
         {
-        using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-           List<BlogDto> lst = db.Query<BlogDto>("select * from tbl_blog").ToList();
-        
+            using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            List<BlogDto> lst = db.Query<BlogDto>("select * from tbl_blog").ToList();
+
             foreach (BlogDto item in lst)
             {
-                Console.WriteLine(item.BlogId); 
+                Console.WriteLine(item.BlogId);
                 Console.WriteLine(item.BlogTitle);
                 Console.WriteLine(item.BlogAuthor);
                 Console.WriteLine(item.BlogContent);
@@ -40,8 +42,8 @@ namespace AKMDotNetCore.ConsoleApp
         private void Edit(int id)
         {
             using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            var item = db.Query<BlogDto>("select * from tbl_blog where blogid = @BlogId", new BlogDto { BlogId = id}).FirstOrDefault();
-            if (item is null) 
+            var item = db.Query<BlogDto>("select * from tbl_blog where blogid = @BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
+            if (item is null)
             {
                 Console.WriteLine("No data found.");
                 return;
@@ -59,7 +61,7 @@ namespace AKMDotNetCore.ConsoleApp
                 BlogTitle = title,
                 BlogAuthor = author,
                 BlogContent = content,
-                    
+
             };
             string query = @"INSERT INTO [dbo].[Tbl_Blog]
            ([BlogTitle]

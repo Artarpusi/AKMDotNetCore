@@ -7,16 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection.Metadata;
 
-namespace AKMDotNetCore.ConsoleApp
+namespace AKMDotNetCore.ConsoleApp.AdoDotNetAKMs
 {
     internal class AdoDotNetAKM
     {
         private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
         {
-           DataSource = "DESKTOP-BCLDL4T",
-           InitialCatalog = "AKMDotNetConsole",
-           UserID = "sa",
-           Password = "sa@123"
+            DataSource = "DESKTOP-BCLDL4T",
+            InitialCatalog = "AKMDotNetConsole",
+            UserID = "sa",
+            Password = "sa@123"
         };
 
         public void Read()
@@ -100,7 +100,7 @@ namespace AKMDotNetCore.ConsoleApp
             Console.WriteLine(message);
         }
 
-        public void Update(int id, string title, string author, string content) 
+        public void Update(int id, string title, string author, string content)
         {
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             connection.Open();

@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AKM.RestApi.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AKMDotNetCore.ConsoleApp
+namespace AKM.RestApi.Db
 {
     internal class AppDbContext : DbContext
     {
@@ -15,6 +16,6 @@ namespace AKMDotNetCore.ConsoleApp
         }
 
 
-        public DbSet<BlogDto> Blogs { get; set; }
+        public DbSet<BlogModel> Blogs { get; set; }
     }
 }
