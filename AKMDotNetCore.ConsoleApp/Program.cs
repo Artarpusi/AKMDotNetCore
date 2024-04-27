@@ -32,12 +32,15 @@ Console.WriteLine("Hello, World!");
 //    Console.WriteLine("-------------------------------------");
 //}
 
-AdoDotNetAKM adoDotNetAKM = new AdoDotNetAKM();
-//adoDotNetAKM.Read();
-//adoDotNetAKM.Create("title", "author", "content");
-//adoDotNetAKM.Update(14, "test title", "test author", "test content");
-//adoDotNetAKM.Delete(12);
-adoDotNetAKM.Edit(12);
-adoDotNetAKM.Edit(2);
+//AdoDotNetAKM adoDotNetAKM = new AdoDotNetAKM();
+////adoDotNetAKM.Read();
+////adoDotNetAKM.Create("title", "author", "content");
+////adoDotNetAKM.Update(14, "test title", "test author", "test content");
+////adoDotNetAKM.Delete(12);
+//adoDotNetAKM.Edit(12);
+//adoDotNetAKM.Edit(2);
 
-Console.ReadKey();
+DapperAKM dapperAKM = new DapperAKM();
+dapperAKM.Run();
+
+Console.ReadLine();
