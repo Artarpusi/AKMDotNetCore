@@ -129,22 +129,25 @@ namespace AKM.RestApi.Controllers
         [HttpPut("{id}")]
         public IActionResult PutBlog(int id, BlogModel blog)
         {
-            string getQuery = "SELECT COUNT(*) FROM Tbl_Blog WHERE BlogId = @BlogId";
+            string query = "SELECT COUNT(*) FROM Tbl_Blog WHERE BlogId = @BlogId";
             SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
             connection.Open();
-            SqlCommand checkCmd = new SqlCommand(getQuery, connection);
+            SqlCommand checkCmd = new SqlCommand(query, connection);
             checkCmd.Parameters.AddWithValue("@BlogId", id);
-            var count = (int)checkCmd.ExecuteScalar();
-            if (count == 0) return NotFound();
+            var item = FindById(id);
+            if (item is null)
+            {
+                return NotFound("No Data Found.");
+            }
 
-            string updateQuery = @"UPDATE [dbo].[Tbl_Blog]
+            string updatequery = @"UPDATE [dbo].[Tbl_Blog]
                            SET [BlogTitle] = @BlogTitle,
                                [BlogAuthor] = @BlogAuthor,
                                [BlogContent] = @BlogContent
                            WHERE BlogId = @BlogId";
 
 
-            SqlCommand cmd = new SqlCommand(updateQuery, connection);
+            SqlCommand cmd = new SqlCommand(updatequery, connection);
 
             cmd.Parameters.AddWithValue("@BlogId", id);
             cmd.Parameters.AddWithValue("@BlogTitle", blog.BlogTitle);
@@ -165,8 +168,6 @@ namespace AKM.RestApi.Controllers
             string query = "select * from Tbl_Blog where BlogId = @BlogId";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@BlogId", id);
-            var count = (int)cmd.ExecuteScalar();
-            if (count == 0) return NotFound();
             SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             dataAdapter.Fill(dt);
@@ -176,7 +177,6 @@ namespace AKM.RestApi.Controllers
                 var response = new { IsSuccess = false, Message = "No data found." };
                 return NotFound(response);
             }
-
             DataRow row = dt.Rows[0];
 
             BlogModel item = new BlogModel
@@ -189,9 +189,6 @@ namespace AKM.RestApi.Controllers
             lst.Add(item);
             string conditions = "";
             List<SqlParameter> parameters = new List<SqlParameter>();
-
-            #region Patch Validation Conditions
-
             if (!string.IsNullOrEmpty(blog.BlogTitle))
             {
                 conditions += " [BlogTitle] = @BlogTitle, ";
@@ -215,11 +212,8 @@ namespace AKM.RestApi.Controllers
 
             if (conditions.Length == 0)
             {
-                var response = new { IsSuccess = false, Message = "No data found." };
-                return NotFound(response);
+                return NotFound("No data to update.");
             }
-
-            #endregion
 
             conditions = conditions.TrimEnd(',', ' ');
             query = $@"UPDATE [dbo].[Tbl_Blog] SET {conditions} WHERE BlogId = @BlogId";
