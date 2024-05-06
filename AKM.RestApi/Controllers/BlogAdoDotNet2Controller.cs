@@ -118,84 +118,69 @@ namespace AKM.RestApi.Controllers
         [HttpPatch("{id}")]
         public IActionResult PatchBlog(int id, BlogModel blog)
         {
-            SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            connection.Open();
-            string query = "select * from Tbl_Blog where BlogId = @BlogId";
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@BlogId", id);
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            dataAdapter.Fill(dt);
-            List<BlogModel> lst = new List<BlogModel>();
-            if (dt.Rows.Count == 0)
-            {
-                var response = new { IsSuccess = false, Message = "No data found." };
-                return NotFound(response);
-            }
-            DataRow row = dt.Rows[0];
+            List<AdoDotNetParameter> lst = new List<AdoDotNetParameter>();
+            string findQuery = "select * from tbl_blog where blogid = @BlogId";
+            var item = _adoDotNetService.QueryFirstOrDefault<BlogModel>(findQuery, new AdoDotNetParameter("@BlogId", id));
 
-            BlogModel item = new BlogModel
+            if (item is null)
             {
-                BlogId = Convert.ToInt32(row["BlogId"]),
-                BlogTitle = Convert.ToString(row["BlogTitle"]),
-                BlogAuthor = Convert.ToString(row["BlogAuthor"]),
-                BlogContent = Convert.ToString(row["BlogContent"]),
-            };
-            lst.Add(item);
-            string conditions = "";
-            List<SqlParameter> parameters = new List<SqlParameter>();
-            if (!string.IsNullOrEmpty(blog.BlogTitle))
+                return NotFound("No Data Found.");
+            }
+
+            // Adding the BlogId parameter
+            lst.Add(new AdoDotNetParameter("@BlogId", id));
+
+            // Prepare SQL UPDATE conditions and add corresponding parameters
+            string conditions = String.Empty;
+
+            if (!String.IsNullOrEmpty(blog.BlogTitle))
             {
                 conditions += " [BlogTitle] = @BlogTitle, ";
-                parameters.Add(new SqlParameter("@BlogTitle", SqlDbType.NVarChar) { Value = blog.BlogTitle });
-                item.BlogTitle = blog.BlogTitle;
+                lst.Add(new AdoDotNetParameter("@BlogTitle", blog.BlogTitle));
             }
 
-            if (!string.IsNullOrEmpty(blog.BlogAuthor))
+            if (!String.IsNullOrEmpty(blog.BlogAuthor))
             {
                 conditions += " [BlogAuthor] = @BlogAuthor, ";
-                parameters.Add(new SqlParameter("@BlogAuthor", SqlDbType.NVarChar) { Value = blog.BlogAuthor });
-                item.BlogAuthor = blog.BlogAuthor;
+                lst.Add(new AdoDotNetParameter("@BlogAuthor", blog.BlogAuthor));
             }
 
-            if (!string.IsNullOrEmpty(blog.BlogContent))
+            if (!String.IsNullOrEmpty(blog.BlogContent))
             {
                 conditions += " [BlogContent] = @BlogContent, ";
-                parameters.Add(new SqlParameter("@BlogContent", SqlDbType.NVarChar) { Value = blog.BlogContent });
-                item.BlogContent = blog.BlogContent;
+                lst.Add(new AdoDotNetParameter("@BlogContent", blog.BlogContent));
             }
 
+            // Check if no fields are updated
             if (conditions.Length == 0)
             {
-                return NotFound("No data to update.");
+                var response = new { IsSuccess = false, Message = "No updates provided." };
+                return BadRequest(response);
             }
 
-            conditions = conditions.TrimEnd(',', ' ');
-            query = $@"UPDATE [dbo].[Tbl_Blog] SET {conditions} WHERE BlogId = @BlogId";
+            // Remove the last comma and space from the conditions string
+            conditions = conditions.Substring(0, conditions.Length - 2);
 
-            using SqlCommand cmd2 = new SqlCommand(query, connection);
-            cmd2.Parameters.AddWithValue("@BlogId", id);
-            cmd2.Parameters.AddRange(parameters.ToArray());
+            // Construct the SQL update statement
+            string query = $@"UPDATE [dbo].[Tbl_Blog]
+                      SET {conditions}
+                      WHERE BlogId = @BlogId";
 
-            int result = cmd2.ExecuteNonQuery();
-            connection.Close();
-            string message = result > 0 ? "Patch Updating Successful." : "Patch Updating Failed.";
+            // Execute the SQL update statement
+            var result = _adoDotNetService.Execute(query, lst.ToArray());
+
+            string message = result > 0 ? "Patching Successful!" : "Patching Failed.";
             return Ok(message);
         }
+
+
 
         [HttpDelete("{id}")]
         public IActionResult DeleteBlog(int id)
         {
             string query = @"DELETE FROM [dbo].[Tbl_Blog]
                            WHERE BlogId = @BlogId";
-            SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            connection.Open();
-
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@BlogId", id);
-
-            int result = cmd.ExecuteNonQuery();
-            connection.Close();
+            var result = _adoDotNetService.Execute(query, new AdoDotNetParameter("@BlogId", id));
 
             string message = result > 0 ? "Deleting Successful." : "Deleting Failed.";
             return Ok(message);
