@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AKM.RestApi", "AKM.RestApi\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AKMDotNetCore.Shared", "AKMDotNetCore.Shared\AKMDotNetCore.Shared.csproj", "{A0F89EE9-3FE8-4A48-A895-1A676754944A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKMDotNetCore.RestApiWithNLayer", "AKMDotNetCore.RestApiWithNLayer\AKMDotNetCore.RestApiWithNLayer.csproj", "{3FAA1AD6-1633-4C89-B37C-314041D60C97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AKMDotNetCore.RestApiWithNLayer", "AKMDotNetCore.RestApiWithNLayer\AKMDotNetCore.RestApiWithNLayer.csproj", "{3FAA1AD6-1633-4C89-B37C-314041D60C97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKMDotNetCore.ConsoleAppHttpClient", "AKMDotNetCore.ConsoleAppHttpClient\AKMDotNetCore.ConsoleAppHttpClient.csproj", "{58AB7027-CC98-4BD1-A793-0FAEE1E0077F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{3FAA1AD6-1633-4C89-B37C-314041D60C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FAA1AD6-1633-4C89-B37C-314041D60C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FAA1AD6-1633-4C89-B37C-314041D60C97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58AB7027-CC98-4BD1-A793-0FAEE1E0077F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58AB7027-CC98-4BD1-A793-0FAEE1E0077F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58AB7027-CC98-4BD1-A793-0FAEE1E0077F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58AB7027-CC98-4BD1-A793-0FAEE1E0077F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
