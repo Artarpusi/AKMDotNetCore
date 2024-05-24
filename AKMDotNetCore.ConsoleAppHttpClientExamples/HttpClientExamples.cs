@@ -14,12 +14,12 @@ namespace AKMDotNetCore.ConsoleAppHttpClientExamples
         private readonly string _blogEndpoint = "api/blog";
         public async Task RunAsync()
         {
-            //await ReadAsync();
+            await ReadAsync();
             //await EditAsync(2);
             //await EditAsync(25);
             //await CreateAsync("title", "author 2", "content 3");
-            await UpdateeAsync(25, "title 1", "author 2", "content 3");
-            await EditAsync(25);
+            //await UpdateeAsync(25, "title 1", "author 2", "content 3");
+            //await EditAsync(25);
         }
 
         private async Task ReadAsync()
