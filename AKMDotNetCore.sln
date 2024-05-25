@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AKMDotNetCore.ConsoleAppRes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKMDotNetCore.PizzaApi", "AKMDotNetCore.PizzaApi\AKMDotNetCore.PizzaApi.csproj", "{4DE91803-24CB-4D70-854C-C14C6F80C1EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKMDotNetCore.ConsoleAppRefitExamples", "AKMDotNetCore.ConsoleAppRefitExamples\AKMDotNetCore.ConsoleAppRefitExamples.csproj", "{2AAA8F50-1416-4EFA-81DB-D66556E5D842}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{4DE91803-24CB-4D70-854C-C14C6F80C1EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DE91803-24CB-4D70-854C-C14C6F80C1EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DE91803-24CB-4D70-854C-C14C6F80C1EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AAA8F50-1416-4EFA-81DB-D66556E5D842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AAA8F50-1416-4EFA-81DB-D66556E5D842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AAA8F50-1416-4EFA-81DB-D66556E5D842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AAA8F50-1416-4EFA-81DB-D66556E5D842}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
