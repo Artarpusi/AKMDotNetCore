@@ -43,6 +43,8 @@ namespace AKMDotNetCore.WinFormsApp
 
             if (e.RowIndex == -1) return;
 
+            #region If Case
+
             var blogId = Convert.ToInt32(dgvData.Rows[e.RowIndex].Cells["colId"].Value);
 
             if (e.ColumnIndex == (int)EnumFormControlType.Edit)
@@ -50,7 +52,7 @@ namespace AKMDotNetCore.WinFormsApp
                 FrmBlog frm = new FrmBlog(blogId);
                 frm.ShowDialog();
 
-                BlogList(); 
+                BlogList();
             }
             else if (e.ColumnIndex == (int)EnumFormControlType.Delete)
             {
@@ -59,6 +61,11 @@ namespace AKMDotNetCore.WinFormsApp
 
                 DeleteBlog(blogId);
             }
+
+            #endregion
+
+
+            #region Switch Case
 
             //int index = e.ColumnIndex;
             //EnumFormControlType enumFormControlType = (EnumFormControlType)index;
@@ -81,6 +88,8 @@ namespace AKMDotNetCore.WinFormsApp
             //        MessageBox.Show("Invalid Case.");
             //        break;
             //}
+
+            #endregion
 
 
             //EnumFormControlType enumFormControlType = EnumFormControlType.None;
