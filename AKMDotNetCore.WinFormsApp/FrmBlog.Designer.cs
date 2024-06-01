@@ -37,6 +37,7 @@ namespace AKMDotNetCore.WinFormsApp
             label3 = new Label();
             btnCancel = new Button();
             btnSave = new Button();
+            btnUpdate = new Button();
             SuspendLayout();
             // 
             // txtAuthor
@@ -116,11 +117,27 @@ namespace AKMDotNetCore.WinFormsApp
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
             // 
+            // btnUpdate
+            // 
+            btnUpdate.BackColor = Color.FromArgb(128, 128, 255);
+            btnUpdate.FlatAppearance.BorderSize = 0;
+            btnUpdate.FlatStyle = FlatStyle.Flat;
+            btnUpdate.ForeColor = Color.Black;
+            btnUpdate.Location = new Point(291, 385);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(100, 39);
+            btnUpdate.TabIndex = 9;
+            btnUpdate.Text = "&Update";
+            btnUpdate.UseVisualStyleBackColor = false;
+            btnUpdate.Visible = false;
+            btnUpdate.Click += btnUpdate_Click;
+            // 
             // FrmBlog
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1058, 573);
+            Controls.Add(btnUpdate);
             Controls.Add(btnSave);
             Controls.Add(btnCancel);
             Controls.Add(label3);
@@ -151,5 +168,6 @@ namespace AKMDotNetCore.WinFormsApp
         private Label label3;
         private Button btnCancel;
         private Button btnSave;
+        private Button btnUpdate;
     }
 }
