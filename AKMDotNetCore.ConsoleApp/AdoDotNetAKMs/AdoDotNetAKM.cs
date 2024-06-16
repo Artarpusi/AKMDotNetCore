@@ -9,15 +9,22 @@ using System.Reflection.Metadata;
 
 namespace AKMDotNetCore.ConsoleApp.AdoDotNetAKMs
 {
-    internal class AdoDotNetAKM
+    public class AdoDotNetAKM
     {
-        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+        //private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+        //{
+        //    DataSource = "DESKTOP-BCLDL4T",
+        //    InitialCatalog = "AKMDotNetConsole",
+        //    UserID = "sa",
+        //    Password = "sa@123"
+        //};
+
+        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder;
+
+        public AdoDotNetAKM(SqlConnectionStringBuilder sqlConnectionStringBuilder)
         {
-            DataSource = "DESKTOP-BCLDL4T",
-            InitialCatalog = "AKMDotNetConsole",
-            UserID = "sa",
-            Password = "sa@123"
-        };
+            _sqlConnectionStringBuilder = sqlConnectionStringBuilder;
+        }
 
         public void Read()
         {

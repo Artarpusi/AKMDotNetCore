@@ -12,7 +12,14 @@ namespace AKM.RestApi.Controllers
     [ApiController]
     public class BlogDapper2Controller : ControllerBase
     {
-        private readonly Dapperservice _dapperService = new Dapperservice(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+        //private readonly Dapperservice _dapperService = new Dapperservice(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+
+        private readonly Dapperservice _dapperService;
+
+        public BlogDapper2Controller(Dapperservice dapperService)
+        {
+            _dapperService = dapperService;
+        }
 
         // Read
         [HttpGet]

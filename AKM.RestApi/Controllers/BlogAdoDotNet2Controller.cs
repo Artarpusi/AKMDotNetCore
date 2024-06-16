@@ -16,8 +16,15 @@ namespace AKM.RestApi.Controllers
     public class BlogAdoDotNet2Controller : ControllerBase
     {
 
-        private readonly AdoDotNetService _adoDotNetService =
-            new AdoDotNetService(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+        //private readonly AdoDotNetService _adoDotNetService =
+        //    new AdoDotNetService(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+
+        private readonly AdoDotNetService _adoDotNetService;
+
+        public BlogAdoDotNet2Controller(AdoDotNetService adoDotNetService)
+        {
+            this._adoDotNetService = adoDotNetService;
+        }
 
         [HttpGet]
         public IActionResult GetBlogs()
