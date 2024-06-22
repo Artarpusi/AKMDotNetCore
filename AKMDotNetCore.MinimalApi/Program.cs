@@ -1,4 +1,6 @@
 using AKMDotNetCore.MinimalApi.Db;
+using AKMDotNetCore.MinimalApi.Features.Blog;
+using AKMDotNetCore.MinimalApi.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,11 +28,9 @@ app.UseHttpsRedirection();
 
 app.MapGet("/", () => "Hello World");
 
-app.MapGet("api/Blog", async (AppDbContext db) => 
-{  
-    var lst = await db.Blogs.AsNoTracking().ToListAsync();
-    return Results.Ok(lst);
-});
+//BlogService.AddBlogFeatures(app);
+
+app.MapBlogs();
 
 app.Run();
 
